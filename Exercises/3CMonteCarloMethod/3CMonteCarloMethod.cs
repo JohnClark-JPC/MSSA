@@ -46,6 +46,16 @@ namespace MonteCarlo
             double y = rand.NextDouble();
             return Math.Sqrt(x * x + y * y);
         }
+
+        /*
+        1. The ratio of the 2 areas evaluated is PI / 4. * by 4 to get estimated value of PI. 
+        2. The more iterations run, the closer to Pi you get
+        3. No, each time you run the program a new random number seed is generated
+        4. 100,000,000 takes about 2 seconds
+        5. 7.693589793245081E-06 or .000007693589793245081
+        6. Performing sensitivity analysis in business risk evaluation to show probability distributions based on selected factors.
+           Also, we use this in the Navy for calculating probability of detection when searching for submarines.
+        */
     }
 }
 
