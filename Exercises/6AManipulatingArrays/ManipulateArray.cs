@@ -33,6 +33,7 @@ namespace _6AManipulatingArrays
                 Console.WriteLine($"Array {arrNames[i]}: Count: {jaggedArray[i].Length}, Sum: {arrSum}, Mean: {arrMean}");
                 Console.ForegroundColor = ConsoleColor.White;
             }
+            Console.ReadLine();
             MainMenu.mainMenu();
         }
 
@@ -50,6 +51,7 @@ namespace _6AManipulatingArrays
                 Console.WriteLine();
             }
             Console.ForegroundColor = ConsoleColor.White;
+            Console.ReadLine();
             MainMenu.mainMenu();
         }
 
@@ -64,8 +66,10 @@ namespace _6AManipulatingArrays
             Console.WriteLine("Array C rotated 4 positions left: ");
             RotateArrayFunction(jaggedArray[2], 4, 'l');
             Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
+            Console.ReadLine();
+            MainMenu.mainMenu();
         }
-
 
         public void RotateArrayFunction(int[] nums, int k, char d)
         {
@@ -75,6 +79,7 @@ namespace _6AManipulatingArrays
                 for (int i = 0; i < k; i++)
                 {
                     int temp = nums[0];
+
                     for (int j = 1; j < nums.Length; j++)
                     {
                         nums[j - 1] = nums[j];
@@ -93,6 +98,7 @@ namespace _6AManipulatingArrays
                 for (int i = 0; i < k; i++)
                 {
                     int temp = nums[nums.Length - 1];
+
                     for (int j = nums.Length -1; j > 0; j--)
                     {
                         nums[j] = nums[j - 1];
@@ -106,11 +112,35 @@ namespace _6AManipulatingArrays
                 }
                 Console.WriteLine();
             }
+
         }
 
         public void SortArray()
         {
-
+            int[] c = jaggedArray[2];
+            for (int i = 0; i <= c.Length - 2; i++)
+            {
+                for (int j = 0; j <= c.Length - 2; j++)
+                {
+                    if(c[j] > c[j + 1])
+                    {
+                        int t = c[j + 1];
+                        c[j + 1] = c[j];
+                        c[j] = t;
+                    }
+                }
+            }
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Sorted Array C:");
+            foreach (int a in c)
+            {
+                Console.Write($"{a}, ");
+            }
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
+            Console.ReadLine();
+            MainMenu.mainMenu();
         }
     }
 }
