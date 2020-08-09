@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace _6AManipulatingArrays
@@ -52,10 +53,59 @@ namespace _6AManipulatingArrays
             MainMenu.mainMenu();
         }
 
-
         public void RotateArray()
         {
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Array A rotated 2 positions left: ");
+            RotateArrayFunction(jaggedArray[0], 2, 'l');
+            Console.WriteLine("Array B rotated 2 positions right: ");
+            RotateArrayFunction(jaggedArray[1], 2, 'r');
+            Console.WriteLine("Array C rotated 4 positions left: ");
+            RotateArrayFunction(jaggedArray[2], 4, 'l');
+            Console.ForegroundColor = ConsoleColor.White;
+        }
 
+
+        public void RotateArrayFunction(int[] nums, int k, char d)
+        {
+           
+            if (d == 'l')
+            {   
+                for (int i = 0; i < k; i++)
+                {
+                    int temp = nums[0];
+                    for (int j = 1; j < nums.Length; j++)
+                    {
+                        nums[j - 1] = nums[j];
+                    }
+                    nums[nums.Length - 1] = temp;
+                }
+                
+                for (int i = 0; i < nums.Length; i++)
+                {
+                    Console.Write($"{nums[i]}, ");
+                }
+                Console.WriteLine();   
+            }
+            else
+            {
+                for (int i = 0; i < k; i++)
+                {
+                    int temp = nums[nums.Length - 1];
+                    for (int j = nums.Length -1; j > 0; j--)
+                    {
+                        nums[j] = nums[j - 1];
+                    }
+                    nums[0] = temp;
+                }
+
+                for (int i = 0; i < nums.Length; i++)
+                {
+                    Console.Write($"{nums[i]}, ");
+                }
+                Console.WriteLine();
+            }
         }
 
         public void SortArray()
