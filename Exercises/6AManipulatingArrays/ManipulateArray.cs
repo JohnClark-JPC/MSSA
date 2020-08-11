@@ -73,7 +73,6 @@ namespace _6AManipulatingArrays
 
         public void RotateArrayFunction(int[] nums, int k, char d)
         {
-           
             if (d == 'l')
             {   
                 for (int i = 0; i < k; i++)
@@ -112,7 +111,6 @@ namespace _6AManipulatingArrays
                 }
                 Console.WriteLine();
             }
-
         }
 
         public void SortArray()
