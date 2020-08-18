@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Drawing;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 
@@ -30,15 +31,19 @@ namespace _7ARoulette
 
                 Dozens(number, spin);
 
-                Columns(number, spin);
+                int c = Columns(number, spin);
 
-                Street(number, spin);
+                int v = Street(number, spin);
+
+                SixLine(v);
+
+                Split(number, spin, c, v);
 
                 Console.ReadLine();
             }
             else
             {
-
+                //this is where 0 & 00 stuff goes
             }
         }
 
@@ -67,43 +72,106 @@ namespace _7ARoulette
                 Console.WriteLine("Dozens: 3rd");
             }
         }
-        private static void Columns(int[] number, int spin)
+        private static int Columns(int[] number, int spin)
         {
             int column = 0;
             if (number[spin] % 3 == 0)
             {
-                column = 3;
-                Console.WriteLine($"Column: {column}");
+                Console.WriteLine($"Column: 3");
+                return column = 3;
             }
             else if ((number[spin] + 1) % 3 == 0)
             {
-                column = 2;
-                Console.WriteLine($"Column: {column}");
+                Console.WriteLine($"Column: 2");
+                return column = 2;
             }
             else
             {
-                column = 1;
-                Console.WriteLine($"Column: {column}");
+                Console.WriteLine($"Column: 1");
+                return column = 1;
             }
         }
-        private static void Street(int[] number, int spin)
+        private static int Street(int[] number, int spin)
         {
-            int street;
-
             if(number[spin] % 3 == 0)
             {
-                street = number[spin] / 3;
+                int street = number[spin] / 3;
                 Console.WriteLine($"Street: {street}");
+                return street;
             }
             else if((number[spin] + 1) % 3 == 0)
             {
-                street = number[spin] / 3 + 1;
+                int street = number[spin] / 3 + 1;
                 Console.WriteLine($"Street: {street}");
+                return street;
             }
-            else if((number[spin] + 2) % 3 == 0)
+            else
             {
-                street = number[spin] / 3 + 1;
+                int street = number[spin] / 3 + 1;
                 Console.WriteLine($"Street: {street}");
+                return street;
+            }
+        }
+        private static void SixLine(int v)
+        {
+            if (v == 1)
+            {
+                Console.WriteLine($"Sixline: {v}");
+            }
+            else if (v == 12)
+            {
+                Console.WriteLine($"Sixline: {v - 1}");
+            }
+            else
+            {
+                Console.WriteLine($"Sixline: {v - 1} & {v}");
+            }
+        }
+        private static void Split(int[] number, int spin, int c, int v)
+        {
+            int s = number[spin];
+            if (v == 1)
+            {
+                if(s == 1)
+                {
+                    Console.WriteLine($"Splits: 1/2, 1/4");
+                }
+                else if(s == 2)
+                {
+                    Console.WriteLine("Splits: 1/2, 2/3, 3/5");
+                }
+                else
+                {
+                    Console.WriteLine("Splits: 2/3, 3/6");
+                }
+                
+            }
+            else if (v == 12)
+            {
+                if (s == 34)
+                {
+                    Console.WriteLine($"Splits: 34/31, 34/35");
+                }
+                else if (s == 35)
+                {
+                    Console.WriteLine("Splits: 32/35, 34/35, 35/36");
+                }
+                else
+                {
+                    Console.WriteLine("Splits: 33/36, 35/36");
+                }
+            }
+            else if (c == 1)
+            {
+                Console.WriteLine($"Splits: {s}/{s - 3}, {s}/{s + 1}, {s}/{s + 3}");
+            }
+            else if (c == 2)
+            {
+                Console.WriteLine($"Splits: {s}/{s - 3}, {s}/{s - 1}, {s}/{s + 3}, {s}/{s + 1}");
+            }
+            else
+            {
+                Console.WriteLine($"Splits: {s}/{s - 3}, {s}/{s - 1}, {s}/{s + 3}");
             }
         }
     }
