@@ -45,7 +45,7 @@ namespace _7ARoulette
             }
             else
             {
-                //this is where 0 & 00 stuff goes
+                Console.WriteLine("");
             }
         }
 
