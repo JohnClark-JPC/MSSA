@@ -39,6 +39,8 @@ namespace _7ARoulette
 
                 Split(number, spin, c, v);
 
+                Corner(number, spin, v, c);
+
                 Console.ReadLine();
             }
             else
@@ -124,7 +126,7 @@ namespace _7ARoulette
             }
             else
             {
-                Console.WriteLine($"Sixline: {v - 1} & {v}");
+                Console.WriteLine($"Sixlines: {v - 1} & {v}");
             }
         }
         private static void Split(int[] number, int spin, int c, int v)
@@ -172,6 +174,52 @@ namespace _7ARoulette
             else
             {
                 Console.WriteLine($"Splits: {s}/{s - 3}, {s}/{s - 1}, {s}/{s + 3}");
+            }
+        }
+
+        // For determining chip position if writing this for a real game, 
+        // I would label the corners 1 - 22. Corner 1 pays out on 1, 2, 4, 5, corner 2 pays out on 2, 3, 5, 6, etc.
+        private static void Corner(int[] number, int spin, int v, int c)
+        {
+            int wn = number[spin];
+
+            if (v != 1 && v != 12 && c == 1)
+            {
+                Console.WriteLine($"Corners: {wn - 3}/{wn - 2}/{wn}/{wn + 1} and " +
+                                           $"{wn}/{wn + 1}/{wn + 3}/{wn + 4}");
+            }
+            else if (v != 1 && v != 12 && c == 2)
+            {
+                Console.WriteLine($"Corners: {wn - 4}/{wn - 3}/{wn - 1}/{wn} and " +
+                                           $"{wn - 3}/{wn - 2}/{wn}/{wn + 1} and " +
+                                           $"{wn - 1}/{wn}/{wn + 2}/{wn + 3} and " +
+                                           $"{wn}/{wn + 1}/{wn + 3}/{wn + 4}");
+            }
+            else if (v != 1 && v != 12 && c == 3)
+            {
+                Console.WriteLine($"Corners: {wn - 4}/{wn - 3}/{wn - 1}/{wn} and " +
+                                           $"{wn - 1}/{wn}/{wn + 2}/{wn + 3}");
+            }
+            else switch(v)
+            {
+                    case 1:
+                        Console.WriteLine("1/2/4/5");
+                        break;
+                    case 2:
+                        Console.WriteLine("1/2/4/5 and 2/3/5/6");
+                        break;
+                    case 3:
+                        Console.WriteLine("2/3/5/6");
+                        break;
+                    case 34:
+                        Console.WriteLine("31/32/34/35");
+                        break;
+                    case 35:
+                        Console.WriteLine("31/32/34/35 and 32/33/35/36");
+                        break;
+                    case 36:
+                        Console.WriteLine("32/3/35/36");
+                        break;
             }
         }
     }
